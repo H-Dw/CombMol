@@ -1,0 +1,35 @@
+{
+  "protocol": "combmol-inpaint-v1",
+  "status": "passed",
+  "created_before_implementation": true,
+  "implementation_files_present": 0,
+  "modules": [
+    "RuntimePrepare",
+    "ArchiveIndex",
+    "EndpointScore",
+    "InteractionProfile",
+    "ProteinAlign",
+    "ChemScreen",
+    "RegionCatalog",
+    "FusionSelect",
+    "ConditionCompile",
+    "NativeInpaint",
+    "FusionEvaluate",
+    "CampaignResume",
+    "HourlyInspect"
+  ],
+  "checks": [
+    "module contracts and downstream consumers",
+    "800-attempt upper bound",
+    "no spent-slot reuse",
+    "no gradient guidance",
+    "no terminal overwrite",
+    "two-parent provenance",
+    "bounded hourly monitoring"
+  ],
+  "source_hashes": {
+    "modules.md": "602eb41f82dc94de85592093879cb5d736bb2da1c35e81180902a95561b7a33f",
+    "workflow.md": "fb7bd2b45ca7589a0356b668ed961cd8edd080d4b33a86eb53f7cdf2d2298d39"
+  },
+  "created_at_utc": "2026-11-05T18:38:49.136346+00:00"
+}
