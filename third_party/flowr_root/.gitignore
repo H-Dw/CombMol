@@ -1,0 +1,72 @@
+# Gitignore file
+
+# Editors
+.vscode/
+.virtual_documents/
+.github/
+.copilot/
+
+# Python cache files
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+*.pyc
+
+# uv / virtualenv
+# NOTE: uv.lock is intentionally NOT ignored -- it is committed so that
+# `uv sync` is reproducible for everyone.
+.venv/
+**/.venv/
+venv/
+.uv/
+.uv-cache/
+*.egg-info/
+# Python build artefacts at the repo root only (do not shadow any
+# front-end build output under flowr_vis/).
+/build/
+/dist/
+
+# Log files
+molproc_logs/
+lightning_logs/
+notebooks/lightning_logs/
+wandb/
+nohup.out
+
+# Slurm submission scripts and logs
+subslurm/
+slurm-*
+scripts/test.sh
+scripts/tests/
+
+# Local data
+.data/
+*/.data/
+**/.data/
+
+# Agent session memory
+memories/
+**/memories/
+
+# HPC user configuration (contains user-specific paths)
+flowr_vis/hpc/hpc.env
+flowr_vis/hpc/worker_gamma.sh
+flowr_vis/hpc/run_hpc_frontend_gamma.sh
+
+# OpenEye license files
+oe_license.txt
+**/oe_license.txt
+
+# checkpoint files
+**/*.ckpt
+
+# code2pdf
+code_to_pdf.py
+flowr_code.pdf
+flowr_code.html
+
+# FLOWR.ui writes saved ligands here (POST /save-all-ligands)
+output/

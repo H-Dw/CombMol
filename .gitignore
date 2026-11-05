@@ -15,10 +15,10 @@ dist/
 *.h5
 *.hdf5
 *.npz
-results/
-outputs/
-campaigns/
-data/
+/results/
+/outputs/
+/campaigns/
+/data/
 checkpoints/
 .coverage
 htmlcov/

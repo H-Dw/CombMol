@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "combmol"
+version = "0.1.0"
+description = "Evidence-bound interaction-fragment combination with native FLOWR inpainting"
+requires-python = ">=3.12"
+dependencies = ["numpy>=1.26", "scipy>=1.11", "rdkit>=2024.3", "jsonschema>=4", "requests>=2.31"]
+
+[project.scripts]
+combmol = "combmol.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
