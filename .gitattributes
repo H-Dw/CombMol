@@ -5,4 +5,7 @@
 *.md text eol=lf
 *.png binary
 *.pdf binary
+*.csv -text
+*.sdf -text
+*.tar.gz binary
 third_party/flowr_root/** -text

@@ -39,3 +39,7 @@ Results include source indices, parent scores, PLIP and PoseBusters receipts, co
 ## Upstream source
 
 `third_party/UPSTREAM.json` binds every vendored file to canonical Git-object bytes from FLOWR.root commit `739a33c2aab74d074dd24605b9a2e34dc809ae9c`. The native source is unchanged. Its MIT license and the embedded RDKit functional-group attribution are retained. The user-owned EvoMolSteer PLIP serialization approach is adapted in `interactions.py` to preserve the authoritative SDF graph and original heavy coordinates.
+
+## Completed campaign
+
+The [20261106 audited report](docs/experiments/20261106_final/report.zh-CN.md) covers 675 attempts from 27 fusion conditions, the full candidate and parent tables, PoseBusters diagnostics, original top-hit structures and a small provenance-bound evidence archive. The scientific source commit is `fa1d2a258ba38aeb9466545c1b5de217b8d1e27b`; subsequent report commits do not change that frozen run. Generation and CPU diagnostics are complete. The analysis distinguishes the protocol's fusion eligibility from an all-checks PoseBusters pass and from measured biological activity.

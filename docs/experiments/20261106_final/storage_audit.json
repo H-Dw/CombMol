@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "upstream_files": 234,
+  "targets": 2,
+  "terminal_batches": 135,
+  "all_batches_have_five_distinct_full_inputs": true,
+  "single_free_atom_coordinate_degeneracy_batches": 3,
+  "frozen_prior_selections": 19,
+  "max_molblock_rounding_error_A": 5.000000000165983e-05,
+  "checkpoint_verified": true,
+  "scientific_revision": "fa1d2a258ba38aeb9466545c1b5de217b8d1e27b",
+  "process_ended": true
+}

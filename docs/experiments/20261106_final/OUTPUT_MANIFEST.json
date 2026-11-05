@@ -1,0 +1,27 @@
+{
+  "scientific_revision": "fa1d2a258ba38aeb9466545c1b5de217b8d1e27b",
+  "excludes_self": true,
+  "files": {
+    "analysis.json": "7563629c1e11c7180119bd06da9248d4f46cbd88e74e91342236d3212a25b531",
+    "analysis_methods.md": "e07ce95c08e35bd47a3fc2a734f7a2a892ec6cc80fc4e837f31177b59a90acaf",
+    "candidate_metrics.csv": "4cb00dfb03d769104c6521914e26ff43dea5d1ca0c6c4a158d7bb3049b163dba",
+    "evidence.tar.gz": "07b3d87d6e1e5add45c2f732e69c255f72131e6c1b3f83d544814febabe380b8",
+    "evidence_manifest.json": "2f628cf3608f3119fe6d5c75316064b3c0b63d75cb1388fbe4cd4ff362631292",
+    "fusion_summary.csv": "64e532b7eec2ecd5e89b7d945d7a180f0e1631d3f18be1c81919e905e07c5be2",
+    "input_variation.json": "7f4eeede6ac7e58d1a9e5be725c44db17ebe83a867788b93c6380ca472184ad8",
+    "parent_metrics.csv": "b9d2a2d3eb49e1896b0d38b0ab65c6ac143f5678210a289df6f29568f94e9180",
+    "quality_audit.json": "43607770b70702d3c41563ab635cb85e579f9e633be08a6687b60715242e6019",
+    "report.zh-CN.md": "008688f5ac3331075c6a86519efb0e0e886af92eaf7db9276d6a6f3cf0e10f1e",
+    "storage_audit.json": "9a098145efea37ca58afadad753455ec711a8aa9a42d5417b407dc75684ce7dc",
+    "target_summary.csv": "5620849eabf4c6ee4ed0a01363588d1fde7e5d3d9401e60f1c81f957a01edc04",
+    "top_structures/3w54_best_PB_pass.sdf": "ffa4a104132384f33ead0b0df62243d4e2cfc740a492127efd547b5d15b580fc",
+    "top_structures/3w54_best_qualified.sdf": "c71fd112ab7a7a14d496f3c043b480b43eda449a3c2fa73597c8e99a58eb55d1",
+    "top_structures/3w54_winning_parent_1.sdf": "62891792c0cba550d33cde8603fecc96541b27b01db95600c8e401ea7e5e2201",
+    "top_structures/3w54_winning_parent_2.sdf": "38178ed375bcbf53a4df4fb774d65edce2455b5debd169cb7e22005633af3b36",
+    "top_structures/6pyy_best_PB_pass.sdf": "eb5f8f8ffea9739a11143beaf8a2cd9b66334dfedf5e1dfdeb330b2520b9e23b",
+    "top_structures/6pyy_best_qualified.sdf": "eb5f8f8ffea9739a11143beaf8a2cd9b66334dfedf5e1dfdeb330b2520b9e23b",
+    "top_structures/6pyy_winning_parent_1.sdf": "f0d34926123511dc51e57da81780aa5a8c2b73829017b7ad9eba312531eef1be",
+    "top_structures/6pyy_winning_parent_2.sdf": "21249802748e2901132204ca00c3a13d015b3591f09b6993799e249785621109",
+    "top_structures/ORIGINS.json": "09b01ae6d07080358601df68b2697c354c0c613b54ba2256e26c61f016205a35"
+  }
+}

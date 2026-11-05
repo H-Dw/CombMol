@@ -1,0 +1,31 @@
+{
+  "6pyy": {
+    "build_failures": 34,
+    "disconnected": 1,
+    "changed_condition_chemistry": 12,
+    "rmsd_at_least_0_5": 162,
+    "protein_clash": 10,
+    "missing_either_parent_contact": 0,
+    "qualified_PB_pass": 68,
+    "parent_PB_pass": 8,
+    "best_PB_failed_checks": [],
+    "best_PB_pass_qualified_pic50": 5.149265766143799,
+    "qualified_above_both_parents_and_PB_pass": 3
+  },
+  "3w54": {
+    "build_failures": 148,
+    "disconnected": 60,
+    "changed_condition_chemistry": 131,
+    "rmsd_at_least_0_5": 229,
+    "protein_clash": 87,
+    "missing_either_parent_contact": 17,
+    "qualified_PB_pass": 1,
+    "parent_PB_pass": 6,
+    "best_PB_failed_checks": [
+      "bond_lengths",
+      "bond_angles"
+    ],
+    "best_PB_pass_qualified_pic50": 6.344646453857422,
+    "qualified_above_both_parents_and_PB_pass": 0
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "6pyy_best_qualified.sdf": {
+    "source": "targets/6pyy_H7S_A_402/fusions/fusion-11/seed_100045/TERMINAL_RECORDS.json",
+    "properties": {
+      "node_id": "fusion-11_seed100045_rep4",
+      "pic50": "5.149265766143799",
+      "SAScore": "3.6620495050291932",
+      "posebusters_pass": "True"
+    },
+    "sha256": "eb5f8f8ffea9739a11143beaf8a2cd9b66334dfedf5e1dfdeb330b2520b9e23b"
+  },
+  "6pyy_best_PB_pass.sdf": {
+    "source": "targets/6pyy_H7S_A_402/fusions/fusion-11/seed_100045/TERMINAL_RECORDS.json",
+    "properties": {
+      "node_id": "fusion-11_seed100045_rep4",
+      "pic50": "5.149265766143799",
+      "SAScore": "3.6620495050291932",
+      "posebusters_pass": "True"
+    },
+    "sha256": "eb5f8f8ffea9739a11143beaf8a2cd9b66334dfedf5e1dfdeb330b2520b9e23b"
+  },
+  "6pyy_winning_parent_1.sdf": {
+    "source": "targets/6pyy_H7S_A_402/selection/PARENTS.json",
+    "properties": {
+      "node_id": "6pyy_H7S_A_402/unguided_b003_final_000",
+      "pic50": 4.254152297973633,
+      "evidence_id": "source:cd6ff1e7b9728594cd918f2a97c0f235adae3d13104b6216eb8bffb97778c352"
+    },
+    "sha256": "f0d34926123511dc51e57da81780aa5a8c2b73829017b7ad9eba312531eef1be"
+  },
+  "6pyy_winning_parent_2.sdf": {
+    "source": "targets/6pyy_H7S_A_402/selection/PARENTS.json",
+    "properties": {
+      "node_id": "6pyy_H7S_A_402/unguided_b004_final_014",
+      "pic50": 4.206528663635254,
+      "evidence_id": "source:e65ed62965a9b47341102b37f41bd2d2bdea545af35b3f95fe3c8663742d87ee"
+    },
+    "sha256": "21249802748e2901132204ca00c3a13d015b3591f09b6993799e249785621109"
+  },
+  "3w54_best_qualified.sdf": {
+    "source": "targets/3w54_RNB_A_504/fusions/fusion-11/seed_100045/TERMINAL_RECORDS.json",
+    "properties": {
+      "node_id": "fusion-11_seed100045_rep0",
+      "pic50": "7.47135066986084",
+      "SAScore": "3.8041271374480123",
+      "posebusters_pass": "False"
+    },
+    "sha256": "c71fd112ab7a7a14d496f3c043b480b43eda449a3c2fa73597c8e99a58eb55d1"
+  },
+  "3w54_best_PB_pass.sdf": {
+    "source": "targets/3w54_RNB_A_504/fusions/fusion-11/seed_100045/TERMINAL_RECORDS.json",
+    "properties": {
+      "node_id": "fusion-11_seed100045_rep3",
+      "pic50": "6.344646453857422",
+      "SAScore": "2.990486535333302",
+      "posebusters_pass": "True"
+    },
+    "sha256": "ffa4a104132384f33ead0b0df62243d4e2cfc740a492127efd547b5d15b580fc"
+  },
+  "3w54_winning_parent_1.sdf": {
+    "source": "targets/3w54_RNB_A_504/selection/PARENTS.json",
+    "properties": {
+      "node_id": "3w54_RNB_A_504/unguided_b003_final_009",
+      "pic50": 7.491942405700684,
+      "evidence_id": "source:c0118cc83f48d39e985d5a70feff94c07262ec13d6ddfac7a7412d62eee1f38b"
+    },
+    "sha256": "62891792c0cba550d33cde8603fecc96541b27b01db95600c8e401ea7e5e2201"
+  },
+  "3w54_winning_parent_2.sdf": {
+    "source": "targets/3w54_RNB_A_504/selection/PARENTS.json",
+    "properties": {
+      "node_id": "3w54_RNB_A_504/unguided_b000_final_000",
+      "pic50": 7.128336429595947,
+      "evidence_id": "source:fbab6c5639157d45a78da90e11bc488d25ecd599d7cc2038df1338b639cd3b13"
+    },
+    "sha256": "38178ed375bcbf53a4df4fb774d65edce2455b5debd169cb7e22005633af3b36"
+  }
+}
