@@ -1,0 +1,25 @@
+{
+  "protocol": "combmol-inpaint-v1",
+  "revision": "f72c0cc1b632253627eaa8d746b04cf446b02946",
+  "targets": [
+    {
+      "target": "6pyy_H7S_A_402",
+      "status": "failed",
+      "complete": false,
+      "error_type": "RuntimeError",
+      "message": "No usable interaction evidence; resolve saved PLIP errors before selection"
+    },
+    {
+      "target": "3w54_RNB_A_504",
+      "status": "failed",
+      "complete": false,
+      "error_type": "RuntimeError",
+      "message": "No usable interaction evidence; resolve saved PLIP errors before selection"
+    }
+  ],
+  "spent_attempts": 0,
+  "upper_bound": 800,
+  "all_success": false,
+  "no_gradient_guidance": true,
+  "final_inpaint": false
+}

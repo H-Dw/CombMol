@@ -2,7 +2,9 @@ import copy
 import io
 import json
 import math
+import sys
 import tarfile
+import types
 from pathlib import Path
 import numpy
 import pytest
@@ -17,6 +19,40 @@ from combmol.regions import catalogue, chemical_graph, compile_condition, protec
 from combmol.evaluate import summarize
 
 REPOSITORY = Path(__file__).resolve().parents[1]
+
+
+def test_source_installed_posebusters_still_runs_without_distribution_metadata(tmp_path, monkeypatch):
+    from combmol import interactions
+    def missing_metadata(name):
+        raise interactions.importlib.metadata.PackageNotFoundError(name)
+    monkeypatch.setattr(interactions.importlib.metadata, "version", missing_metadata)
+    calls = []
+    class SourcePoseBusters:
+        def __init__(self, config):
+            assert config == "dock"
+        def bust(self, molecule, **kwargs):
+            calls.append(kwargs)
+            return types.SimpleNamespace(iloc=[{"geometry": True, "clash": False}])
+    module = types.ModuleType("posebusters")
+    module.__version__ = "source-version"
+    module.PoseBusters = SourcePoseBusters
+    monkeypatch.setitem(sys.modules, "posebusters", module)
+    protein = tmp_path / "protein.pdb"
+    protein.write_text("ATOM      1  C   ALA A   1      20.000  20.000  20.000  1.00  0.00           C\n")
+    result = interactions.quality(molecule("CCO"), protein)
+    assert result["posebusters_version"] == "source-version"
+    assert result["posebusters_evaluable"] and not result["posebusters_pass"]
+    assert result["posebusters_checks"] == {"geometry": True, "clash": False}
+    assert len(calls) == 1
+
+
+def test_missing_package_version_is_explicitly_unknown(monkeypatch):
+    from combmol import interactions
+    def missing_metadata(name):
+        raise interactions.importlib.metadata.PackageNotFoundError(name)
+    monkeypatch.setattr(interactions.importlib.metadata, "version", missing_metadata)
+    monkeypatch.setitem(sys.modules, "posebusters", types.ModuleType("posebusters"))
+    assert interactions.package_version("posebusters") is None
 
 
 def molecule(smiles, offset=0):

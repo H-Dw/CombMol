@@ -1,0 +1,11 @@
+{
+  "issue": "posebusters import succeeds but distribution metadata is absent",
+  "parent_revision": "f72c0cc1b632253627eaa8d746b04cf446b02946",
+  "parent_attempt": "attempt_001",
+  "verified_old_process_dead": true,
+  "scientific_attempts_before_recovery": 0,
+  "preserved_archive": "/workspace/combmol_campaign_20261106/recoveries/metadata_001/pre_recovery.tar.gz",
+  "archive_sha256": "2cb5ac9f4d4e3bf375fcedca04d5af31966d9cbaead6b9040b2c04d82da50090",
+  "same_error_recovery_number": 1,
+  "time": 1793909737.7147942
+}

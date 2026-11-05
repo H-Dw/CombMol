@@ -12,7 +12,13 @@ from rdkit.Chem import QED, rdMolDescriptors
 from .io import read, write, digest, value_hash as json_digest
 
 def package_version(name):
-    return importlib.metadata.version(name)
+    """An importable source installation may legitimately lack dist-info metadata."""
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        module = importlib.import_module(name)
+        version = getattr(module, '__version__', None)
+        return version if isinstance(version, str) else None
 
 
 class PDBRepresentationError(ValueError):
