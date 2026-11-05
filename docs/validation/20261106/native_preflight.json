@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "scientific_attempts": 0,
+  "results": [
+    {
+      "target": "6pyy_H7S_A_402",
+      "candidate_ids": [
+        "6pyy_H7S_A_402/unguided_b000_final_000",
+        "6pyy_H7S_A_402/unguided_b000_final_001"
+      ],
+      "scores": [
+        3.9303159713745117,
+        3.2539222240448
+      ],
+      "source_com_is_none": true,
+      "device": "cuda",
+      "model_inpainting_mode": true,
+      "model_inpainting_mode_inf": "fragment",
+      "coord_scale": 1.0
+    },
+    {
+      "target": "3w54_RNB_A_504",
+      "candidate_ids": [
+        "3w54_RNB_A_504/unguided_b000_final_000",
+        "3w54_RNB_A_504/unguided_b000_final_002"
+      ],
+      "scores": [
+        7.128350257873535,
+        6.23918342590332
+      ],
+      "source_com_is_none": true,
+      "device": "cuda",
+      "model_inpainting_mode": true,
+      "model_inpainting_mode_inf": "fragment",
+      "coord_scale": 1.0
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.....................                                                    [100%]
+=============================== warnings summary ===============================
+tests/test_native_builder.py::test_runtime_supplies_the_real_native_parser_contract
+  /opt/miniforge3/envs/molsteer-flowr-dtk/lib/python3.11/site-packages/MDAnalysis/topology/tables.py:52: DeprecationWarning: Deprecated in version 2.8.0
+  MDAnalysis.topology.tables has been moved to MDAnalysis.guesser.tables. This import point will be removed in MDAnalysis version 3.0.0
+    warnings.warn(wmsg, category=DeprecationWarning)
+
+tests/test_native_builder.py::test_runtime_supplies_the_real_native_parser_contract
+  /opt/miniforge3/envs/molsteer-flowr-dtk/lib/python3.11/site-packages/Bio/pairwise2.py:278: BiopythonDeprecationWarning: Bio.pairwise2 has been deprecated, and we intend to remove it in a future release of Biopython. As an alternative, please consider using Bio.Align.PairwiseAligner as a replacement, and contact the Biopython developers if you still need the Bio.pairwise2 module.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+21 passed, 2 warnings in 19.69s

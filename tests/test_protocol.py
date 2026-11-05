@@ -114,6 +114,26 @@ def test_ledger_reservation_is_all_or_none(tmp_path):
     assert ledger.spent() == 0
 
 
+def test_saved_terminal_recovery_does_not_spend_or_regenerate_slots(tmp_path):
+    ledger = AttemptLedger(tmp_path / "ledger.json", "condition", SEEDS)
+    seed = SEEDS[0]
+    keys = ledger.pending(seed)
+    rows = [dict(seed=seed, replicate=replicate) for replicate in range(5)]
+    terminal = tmp_path / "terminal.pt"
+    terminal.write_bytes(b"immutable saved tensor fixture")
+    with pytest.raises(ValueError):
+        ledger.reconcile_saved(seed, rows, terminal)
+    ledger.start(keys, "same-initialization", "revision")
+    with pytest.raises(ValueError):
+        ledger.reconcile_saved(seed, rows[:-1], terminal)
+    assert ledger.reconcile_saved(seed, rows, terminal) == keys
+    assert ledger.spent() == 5 and not ledger.pending(seed)
+    assert ledger.reconcile_saved(seed, rows, terminal) == []
+    terminal.write_bytes(b"changed")
+    with pytest.raises(ValueError):
+        ledger.reconcile_saved(seed, rows, terminal)
+
+
 def test_ring_and_functional_group_integrity():
     source = molecule("CCC(=O)NCCc1ccccc1")
     units = protected_units(source, REPOSITORY)

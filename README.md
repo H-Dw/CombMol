@@ -1,6 +1,6 @@
 # CombMol
 
-Combine complementary, experimentally grounded interaction regions selected by a language model, then generate a connected ligand using native FLOWR.root fragment inpainting. No gradient guidance is used.
+Combine complementary, structure-grounded interaction regions selected by a language model, then generate a connected ligand using native FLOWR.root fragment inpainting. No gradient guidance is used.
 
 Implementation starts with the [module pseudocode](docs/pseudocode/modules.md) and [workflow pseudocode](docs/pseudocode/workflow.md). These documents precede implementation code and define the source identity, budget, failure and recovery rules.
 
@@ -19,6 +19,8 @@ python -m combmol.cli preflight --config configs/campaign.json
 bash scripts/run_campaign.sh configs/campaign.json attempt_001
 python -m combmol.cli inspect --root /workspace/combmol_campaign_20261106
 ```
+
+For an independent background process, use `python scripts/launch_background.py --config configs/campaign.json --attempt attempt_001` instead of the foreground run command. The launcher records the pinned commit, scientific plan, process start ticks and boot identity, and hides interactive-shell startup output. Use a new attempt identifier for a repair; it resumes the same frozen campaign and slot ledger.
 
 Set `DEEPSEEK_API_KEY` in the process environment. The model is `deepseek-flash`; its API requests contain evidence packets and strict JSON contracts. Credentials are never configuration or receipt fields. The two English skill entrypoints are the single prompt sources; schemas live in `schemas/` and are included in each request.
 

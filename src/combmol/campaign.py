@@ -149,6 +149,11 @@ def run_condition(config, condition, parents, index, runtime, folder, revision):
         batch_folder = folder / f"seed_{seed}"
         terminal_path = batch_folder / "TERMINALS.pt"
         records_path = batch_folder / "TERMINAL_RECORDS.json"
+        if records_path.exists():
+            recovered = ledger.reconcile_saved(seed, read(records_path), terminal_path)
+            if recovered:
+                frozen(batch_folder / ("RECOVERY_" + value_hash(recovered)[:16] + ".json"),
+                       dict(recovered_slots=recovered, terminal_sha256=digest(terminal_path), new_generation_calls=0))
         pending = ledger.pending(seed)
         if pending:
             if len(pending) != config["replicates"]:

@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import shutil
 import threading
 import time
 import traceback
@@ -12,7 +13,7 @@ from .io import process_identity, read, write
 def inspect(root):
     root = Path(root)
     result = {}
-    for name in ("LAUNCH", "STATUS", "HEARTBEAT", "CPU_PREFLIGHT_EXIT", "FINISHED", "SUITE_FAILED", "ONLINE_PROTOCOL_AUDIT"):
+    for name in ("PLAN", "LAUNCH", "BACKGROUND_LAUNCH", "STATUS", "HEARTBEAT", "CPU_PREFLIGHT_EXIT", "FINISHED", "SUITE_FAILED", "ONLINE_PROTOCOL_AUDIT"):
         path = root / (name + ".json")
         if path.exists():
             result[name] = read(path)
@@ -30,6 +31,22 @@ def inspect(root):
     result["conditions"] = []
     for path in sorted(root.glob("targets/*/fusions/*/SUMMARY.json")):
         result["conditions"].append(dict(path=str(path.relative_to(root)), **read(path)))
+    result["targets"] = {}
+    for folder in sorted(root.glob("targets/*")):
+        details = {}
+        for filename in ("FINISHED.json", "FAILED.json", "selection/PREFILTER.json"):
+            if (folder / filename).exists():
+                details[filename] = read(folder / filename)
+        for filename, field in (("selection/PARENTS.json", "parents"), ("selection/REGIONS.json", None),
+                                ("selection/CONDITIONS.json", None)):
+            if (folder / filename).exists():
+                record = read(folder / filename)
+                details[filename + "_count"] = len(record[field] if field else record)
+        details["saved_terminal_batches"] = len(list(folder.glob("fusions/*/seed_*/TERMINAL_RECORDS.json")))
+        result["targets"][folder.name] = details
+    if root.exists():
+        space = shutil.disk_usage(root)
+        result["disk"] = dict(total=space.total, free=space.free)
     return result
 
 
