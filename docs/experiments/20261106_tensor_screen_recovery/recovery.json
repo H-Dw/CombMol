@@ -1,0 +1,38 @@
+{
+  "issues": [
+    "native TensorDict detach().numpy() returns a mapping, not an array",
+    "one source evidence hash copied incorrectly by screening model after one bounded correction"
+  ],
+  "parent_revision": "66c7b257568745bac63c6d81acd3ff9cb90c0f40",
+  "parent_attempt": "attempt_002",
+  "verified_old_process_dead": true,
+  "scientific_attempts_before_recovery": 0,
+  "same_error_recovery_number": {
+    "tensor_hash": 1,
+    "screen_evidence_id": 1
+  },
+  "preserved_archive": "/workspace/combmol_campaign_20261106/recoveries/tensor_and_screen_001/pre_recovery.tar.gz",
+  "archive_sha256": "921a056800f0bc294e22cf6f4eecd469df3b7e29ba1e3ca45c1d7517870f8e38",
+  "frozen_selection_sha256": {
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_000/RESULT.json": "9f57e7386b0886b01a4cebdb904b7ee70fb1b998fcb76df1401c9a6cf3a4d250",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_012/RESULT.json": "c4b975a3b4e63ad3946aa2fd50faec94270c3bb02d6b889c1ee9e1a0d76a8ef8",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_024/RESULT.json": "e7fdb0c2b54024e02e93343b23c62e4cbdfec0f6a594d65c0ea033a0dd706409",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_036/RESULT.json": "ad0d74708d33ff817b65bbab3c3a314ceeb8b535ac871666cd73a7e390d0296d",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_048/RESULT.json": "68ae8fb44f8cb6c431f487904c65aa436343ce46934dbaf8902f9361163c6991",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_060/RESULT.json": "7013cb859a3a4bc8b3ee45baf2ff3d7b0a80822a0ffc5a706977ea971fd74c78",
+    "targets/3w54_RNB_A_504/selection/llm_screen/batch_072/RESULT.json": "0c828d571411ae24dfcbc7b0454618e3bfea92e459b7522738ed6448f9465051",
+    "targets/6pyy_H7S_A_402/selection/CONDITIONS.json": "0a033bffd113073dc5b1c688c602653e2bb6e44dd324e42c2582c9b73eb939ff",
+    "targets/6pyy_H7S_A_402/selection/PARENTS.json": "a1b6ae90b9ce7cff831ae6dabd7c7c77f7b366298a1e200026d929c9b5596467",
+    "targets/6pyy_H7S_A_402/selection/llm_fusion/RESULT.json": "8f66983345422426d7d702e6792185c9b5a985bf2023ca98cab09c5e2e5b2e6e",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_000/RESULT.json": "0694dd4fe2e4677043df61b3f1dd969a17022bc08129741e23af15d56d51382a",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_012/RESULT.json": "c2f74815de9e8bd8e301880539ca50366dfc2b87518021a0593f5d904f8513ca",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_024/RESULT.json": "8a48ad5bd069485d2e19d4c19b025277f623c5f7cfa0c18ee9ef272d38c7f07b",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_036/RESULT.json": "aedfcb7c57f765929c21498b7ef2fbbcaa425d56c440d384de7f42e6a79e32ab",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_048/RESULT.json": "275bbe51501a870ab4f64655bc538cc128f27b65be1e5c8d246dd23ddd83f04d",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_060/RESULT.json": "4ff9b5b7379ae56ad1d665d783d7b6b3b8b8630d060d85c01c6e69109e85e3b4",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_072/RESULT.json": "bebe8560f4aba12837aecfaedd83c80d795416d9f21dbea2055ad472eaf657b4",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_084/RESULT.json": "b9cdffcbf7630d6c6236aa07a337b9f183f310576d763484a190daa9e49edd59",
+    "targets/6pyy_H7S_A_402/selection/llm_screen/batch_096/RESULT.json": "7b2ca2f00f17f3466f7a45d01e626895f1dbfe43d356ed87a68a5c55a2d98489"
+  },
+  "time": 1793913309.487696
+}

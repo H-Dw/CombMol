@@ -4,6 +4,7 @@ import hashlib
 import os
 import random
 import sys
+from collections.abc import Mapping
 from pathlib import Path
 import numpy
 from rdkit import Chem
@@ -23,14 +24,33 @@ def verify_sources(config):
     return upstream
 
 
+def tensor_leaves(tree, prefix=()):
+    """Visit actual tensors, including native nested TensorDict measurements."""
+    import torch
+    from tensordict import TensorDictBase
+    if torch.is_tensor(tree):
+        yield prefix, tree
+    elif isinstance(tree, (Mapping, TensorDictBase)):
+        for name, value in sorted(tree.items()):
+            yield from tensor_leaves(value, prefix + (name,))
+
+
+def cpu_tensor_tree(tensors):
+    result = {}
+    for path, tensor in tensor_leaves(tensors):
+        destination = result
+        for name in path[:-1]:
+            destination = destination.setdefault(name, {})
+        destination[path[-1]] = tensor.detach().cpu()
+    return result
+
+
 def tensor_hash(tensors):
     checksum = hashlib.sha256()
-    for name, tensor in sorted(tensors.items()):
-        if hasattr(tensor, "detach"):
-            array = tensor.detach().cpu().contiguous().numpy()
-            checksum.update(name.encode())
-            checksum.update(str((array.shape, array.dtype)).encode())
-            checksum.update(array.tobytes())
+    for path, tensor in tensor_leaves(tensors):
+        array = tensor.detach().cpu().contiguous().numpy()
+        checksum.update(value_hash(dict(path=path, shape=array.shape, dtype=str(array.dtype))).encode())
+        checksum.update(array.tobytes())
     return checksum.hexdigest()
 
 

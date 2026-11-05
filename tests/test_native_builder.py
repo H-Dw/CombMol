@@ -4,6 +4,25 @@ from pathlib import Path
 import pytest
 
 
+def test_nested_native_tensor_dictionary_is_hashed_and_saved_without_duck_typing():
+    torch = pytest.importorskip("torch")
+    from tensordict import TensorDict
+    from combmol.native import cpu_tensor_tree, tensor_hash
+    class DetachIsNotATensor:
+        def detach(self):
+            raise AssertionError("Only actual tensors may be detached")
+    nested = TensorDict({"pic50": torch.tensor([4., 5.])}, batch_size=[2])
+    values = dict(coords=torch.zeros(2, 3, 3), affinity=nested, metadata=DetachIsNotATensor())
+    original = tensor_hash(values)
+    assert tensor_hash(dict(reversed(list(values.items())))) == original
+    saved = cpu_tensor_tree(values)
+    assert torch.equal(saved["affinity"]["pic50"], nested["pic50"])
+    assert "metadata" not in saved
+    nested["pic50"][0] = 6.
+    assert tensor_hash(values) != original
+    assert tensor_hash(dict(renamed=values["coords"])) != tensor_hash(dict(coords=values["coords"]))
+
+
 def test_runtime_supplies_the_real_native_parser_contract(tmp_path, monkeypatch):
     pytest.importorskip("torch")
     root = Path(__file__).resolve().parents[1]

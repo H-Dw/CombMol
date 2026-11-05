@@ -32,6 +32,8 @@ Selected fragments remain in their shared protein frame. The native condition fi
 
 The attempt ledger is written before each five-slot sampling call. A started slot is never regenerated automatically, even if the process dies. Completed terminal structures can be re-evaluated at zero generation cost. Restart a failed run with a new `--attempt` identifier; old run receipts remain available. Do not change the scientific configuration or frozen selection to repair an engineering error.
 
+Each LLM request has one correction opportunity. An explicitly identified campaign recovery can reopen an unsuccessful request in its own `recoveries/attempt_NNN` directory, retaining the failed request, audit and responses. At most two recovery requests are allowed per failed batch. Existing successful decisions are reused, evidence identifiers remain exact, and invalid identifiers are never silently corrected by the program.
+
 Results include source indices, parent scores, PLIP and PoseBusters receipts, complete LLM request/decision records, condition provenance, per-slot tensors and SDFs, candidate CSVs, group summaries, the online protocol audit and a Chinese report. Missing measurements remain explicit. Only valid retained fusions contribute to the reported fusion mean/best pIC50.
 
 ## Upstream source

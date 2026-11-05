@@ -238,6 +238,57 @@ def test_failed_attempts_are_not_high_score_successes():
     assert summary["valid_fusion_mean_pic50"] == 7.
 
 
+def test_failed_screen_request_recovers_in_a_new_folder_without_rewriting_or_silent_id_edits(tmp_path, monkeypatch):
+    config = load(REPOSITORY / "configs/campaign.json")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "unit-test-only")
+    candidates = [dict(identifier="one", evidence_id="source:actual")]
+    wrong = dict(decisions=[dict(candidate_identifier="one", keep=True, evidence_ids=["source:typo"], rationale="Valid source fragment")])
+    correct = copy.deepcopy(wrong)
+    correct["decisions"][0]["evidence_ids"] = ["source:actual"]
+    calls = []
+    def respond(*args, **kwargs):
+        calls.append(kwargs["json"])
+        content = wrong if len(calls) <= 2 else correct
+        return type("Reply", (), dict(status_code=200, json=lambda self: dict(model="deepseek-flash", choices=[dict(finish_reason="stop", message=dict(content=json.dumps(content)))])))()
+    monkeypatch.setattr("combmol.provider.requests.post", respond)
+    folder = tmp_path / "failed_batch"
+    provider = Provider(config)
+    audit = lambda result: audit_screen(result, candidates)
+    with pytest.raises(ValueError):
+        provider.ask("screen", dict(candidates=candidates), folder, audit)
+    original = {path.name: path.read_bytes() for path in folder.glob("*.json")}
+    assert "source:actual" in read(folder / "AUDIT_01.json")["reason"]
+    result = provider.ask("screen", dict(candidates=candidates), folder, audit, recovery_id="attempt_003")
+    assert result == correct and len(calls) == 3
+    assert "source:actual" in calls[-1]["messages"][-1]["content"]
+    assert (folder / "recoveries/attempt_003/RESULT.json").exists()
+    assert original == {path.name: path.read_bytes() for path in folder.glob("*.json")}
+    provider.ask("screen", dict(candidates=candidates), folder, audit, recovery_id="attempt_004")
+    assert len(calls) == 3
+
+
+def test_request_recovery_is_bounded_per_failed_batch(tmp_path, monkeypatch):
+    config = load(REPOSITORY / "configs/campaign.json")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "unit-test-only")
+    candidates = [dict(identifier="one", evidence_id="source:actual")]
+    wrong = dict(decisions=[dict(candidate_identifier="one", keep=False, evidence_ids=["source:typo"], rationale="Reject with evidence")])
+    calls = []
+    def respond(*args, **kwargs):
+        calls.append(kwargs["json"])
+        return type("Reply", (), dict(status_code=200, json=lambda self: dict(model="deepseek-flash", choices=[dict(finish_reason="stop", message=dict(content=json.dumps(wrong)))])))()
+    monkeypatch.setattr("combmol.provider.requests.post", respond)
+    provider = Provider(config)
+    audit = lambda result: audit_screen(result, candidates)
+    folder = tmp_path / "failed_batch"
+    for attempt in (None, "attempt_003", "attempt_004"):
+        with pytest.raises(ValueError):
+            provider.ask("screen", dict(candidates=candidates), folder, audit, recovery_id=attempt)
+    assert len(calls) == 6
+    with pytest.raises(ValueError, match="limit reached"):
+        provider.ask("screen", dict(candidates=candidates), folder, audit, recovery_id="attempt_005")
+    assert len(calls) == 6
+
+
 def test_archive_indexes_node_property_instead_of_record_order(tmp_path):
     target = "test_target"
     dataset = tmp_path / "dataset"

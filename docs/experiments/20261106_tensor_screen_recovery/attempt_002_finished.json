@@ -1,0 +1,25 @@
+{
+  "protocol": "combmol-inpaint-v1",
+  "revision": "66c7b257568745bac63c6d81acd3ff9cb90c0f40",
+  "targets": [
+    {
+      "target": "6pyy_H7S_A_402",
+      "status": "failed",
+      "complete": false,
+      "error_type": "AttributeError",
+      "message": "'dict' object has no attribute 'shape'"
+    },
+    {
+      "target": "3w54_RNB_A_504",
+      "status": "failed",
+      "complete": false,
+      "error_type": "ValueError",
+      "message": "LLM submission remains invalid after one correction: Screen evidence must cite the candidate's exact source evidence"
+    }
+  ],
+  "spent_attempts": 0,
+  "upper_bound": 800,
+  "all_success": false,
+  "no_gradient_guidance": true,
+  "final_inpaint": false
+}

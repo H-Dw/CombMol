@@ -1,0 +1,9 @@
+# Native tensor identity and screened-evidence recovery
+
+The second attempt completed PLIP and diagnostic preparation for both targets. 6pyy has eight frozen parents and eleven frozen fusion conditions. Its first input batch passed native feature and source-coordinate checks, then failed before slot reservation while hashing a native nested TensorDict as though it were a Tensor. No sampling call occurred.
+
+The initialization identity now recursively visits actual tensors in mappings and native TensorDict containers, including affinity/docking data. It never treats the presence of a `detach` method as proof of a Tensor. The same traversal saves nested tensor inputs in the initialization receipt. Regression checks cover ordering, nested-value changes, field names, CPU preservation and a non-tensor object exposing `detach`.
+
+3w54 completed seven screening batches. In batch 084 the first response exhausted its output allowance without a JSON answer; the one correction supplied twelve decisions but copied the final two characters of one source evidence hash incorrectly. The audit correctly refused it. The repair keeps exact evidence checks, gives candidate-specific required/received identifiers, and allows an explicitly identified campaign recovery to submit a new request in a separate directory. It never edits the model's submitted identifier into a valid one.
+
+Each request retains its one-correction limit. A failed original request may have at most two separately recorded recovery requests; successful decisions are reused without new calls. Tests verify old files remain byte-identical, successful recovery is reused, and a third recovery is refused without an API call. Existing successful screening results, 6pyy parents and its eleven conditions remain frozen. Their hashes and both failed attempts are preserved in the recovery snapshot. Scientific attempts consumed before this repair: zero.

@@ -15,7 +15,7 @@ from .evaluate import parent_profile_job, terminal_job, molecular_properties, su
 from .geometry import clashes, protein_atoms, topology
 from .io import digest, event, frozen, process_identity, read, value_hash, write, exclusive
 from .ledger import AttemptLedger
-from .native import NativeRuntime, verify_sources
+from .native import NativeRuntime, cpu_tensor_tree, verify_sources
 from .provider import Provider, audit_screen, audit_fusions
 from .regions import catalogue, chemical_graph, compile_condition, opportunities
 
@@ -27,7 +27,7 @@ def parallel_jobs(function, tasks, workers):
         return list(pool.map(function, tasks))
 
 
-def prepare_parents(config, index, runtime, folder):
+def prepare_parents(config, index, runtime, folder, recovery_id=None):
     folder = Path(folder)
     receipt = folder / "PARENTS.json"
     if receipt.exists():
@@ -96,7 +96,7 @@ def prepare_parents(config, index, runtime, folder):
         packet = dict(target=index["target"], candidates=[{name: candidate[name] for name in
             ("identifier", "evidence_id", "pic50", "graph", "profile", "basic_quality")} for candidate in group])
         result = provider.ask("screen", packet, folder / "llm_screen" / f"batch_{start:03d}",
-                              lambda result: audit_screen(result, group))
+                              lambda result: audit_screen(result, group), recovery_id=recovery_id)
         kept = {decision["candidate_identifier"] for decision in result["decisions"] if decision["keep"]}
         accepted.extend(candidate for candidate in group if candidate["identifier"] in kept)
     accepted.sort(key=lambda candidate: (-candidate["pic50"], candidate["identifier"]))
@@ -115,7 +115,7 @@ def prepare_parents(config, index, runtime, folder):
     return parents
 
 
-def choose_conditions(config, target, parents, folder):
+def choose_conditions(config, target, parents, folder, recovery_id=None):
     folder = Path(folder)
     path = folder / "CONDITIONS.json"
     if path.exists():
@@ -132,7 +132,7 @@ def choose_conditions(config, target, parents, folder):
         coordinate_frame="shared unchanged protein frame; no ligand alignment",
         clash_ratio=config["clash_ratio"], final_inpaint=False)
     result = Provider(config).ask("fusion", packet, folder / "llm_fusion",
-                                  lambda result: audit_fusions(result, parents, regions, config))
+                                  lambda result: audit_fusions(result, parents, regions, config), recovery_id=recovery_id)
     conditions = [compile_condition(proposal, parents, regions, config) for proposal in result["proposals"]]
     if len(conditions) > 16:
         raise ValueError("Too many conditions")
@@ -161,7 +161,7 @@ def run_condition(config, condition, parents, index, runtime, folder, revision):
             batch = runtime.prepare_generation(condition, seed)
             batch_folder.mkdir(parents=True, exist_ok=True)
             torch = runtime.torch
-            torch.save({"prior": {name: tensor.detach().cpu() for name, tensor in batch["prior"].items() if torch.is_tensor(tensor)},
+            torch.save({"prior": cpu_tensor_tree(batch["prior"]),
                         "torch_rng": torch.get_rng_state(), "accelerator_rng": torch.cuda.get_rng_state_all()}, batch_folder / "INITIALIZATION.pt")
             frozen(batch_folder / "INITIALIZATION.json", dict(hash=batch["initialization_hash"], atom_count=batch["atom_count"], seed=seed))
             ledger.start(pending, batch["initialization_hash"], revision)
@@ -254,9 +254,9 @@ def run(config, attempt="attempt_001"):
                     model_inpainting_mode_inf=runtime.model.inpainting_mode_inf,
                     coord_scale=runtime.model.coord_scale,
                     use_inpaint_self_condition=runtime.model._inpaint_self_condition))
-                parents = prepare_parents(config, index, runtime, destination / "selection")
+                parents = prepare_parents(config, index, runtime, destination / "selection", recovery_id=attempt)
                 event(root, "fragment_combination", target=target, attempt=attempt)
-                conditions = choose_conditions(config, target, parents, destination / "selection")
+                conditions = choose_conditions(config, target, parents, destination / "selection", recovery_id=attempt)
                 summaries = []
                 for condition in conditions:
                     event(root, "native_inpainting_and_evaluation", target=target,

@@ -1,5 +1,6 @@
 """One model, bounded correction, immutable requests; no credentials in receipts."""
 import os
+import re
 import time
 from pathlib import Path
 import json
@@ -13,7 +14,45 @@ class Provider:
         self.config = config
         self.repository = Path(config["repository"])
 
-    def ask(self, phase, packet, folder, audit):
+    def ask(self, phase, packet, folder, audit, recovery_id=None):
+        folder = Path(folder)
+        if recovery_id is None or not (folder / "FAILED.json").exists() or (folder / "RESULT.json").exists():
+            return self._ask_once(phase, packet, folder, audit)
+        if not re.fullmatch(r"attempt_[0-9]+", recovery_id):
+            raise ValueError("A request recovery must cite its explicit campaign attempt")
+        previous = sorted((folder / "recoveries").glob("*/REPAIR.json"))
+        for repair_path in reversed(previous):
+            if (repair_path.parent / "RESULT.json").exists():
+                repair = read(repair_path)
+                return self._ask_once(phase, packet, repair_path.parent, audit, repair["context"])
+        destination = folder / "recoveries" / recovery_id
+        repair_path = destination / "REPAIR.json"
+        if repair_path.exists():
+            context = read(repair_path)["context"]
+        else:
+            if len(previous) >= 2:
+                raise ValueError("Request recovery limit reached; user intervention is required")
+            parent = previous[-1].parent if previous else folder
+            responses = sorted(parent.glob("RESPONSE_*.json"))
+            submission = None
+            if responses:
+                try:
+                    submission = json.loads(read(responses[-1]).get("content") or "")
+                except ValueError:
+                    pass
+            reason = read(parent / "FAILED.json")["reason"] if (parent / "FAILED.json").exists() else "Unfinished request"
+            if submission is not None:
+                try:
+                    audit(submission)
+                except (ValueError, KeyError) as error:
+                    reason = str(error)
+            context = dict(previous_submission=submission, deterministic_audit=reason,
+                instruction="Return a complete corrected JSON submission. Copy exact supplied identifiers; do not invent or shorten evidence IDs.")
+            frozen(repair_path, dict(parent_request=str(parent), parent_request_sha256=value_hash(read(parent / "REQUEST.json")),
+                                    campaign_attempt=recovery_id, recovery_number=len(previous) + 1, context=context))
+        return self._ask_once(phase, packet, destination, audit, context)
+
+    def _ask_once(self, phase, packet, folder, audit, repair_context=None):
         folder = Path(folder)
         skill_name = "parent-candidate-screening" if phase == "screen" else "interaction-fragment-combination"
         skill = self.repository / "skills" / skill_name
@@ -24,8 +63,12 @@ class Provider:
         binding = dict(model=self.config["model"], api_base=self.config["api_base"],
                        packet=packet, system_sha256=value_hash(system), schema=schema,
                        max_tokens=self.config["llm_output_tokens"])
+        if repair_context is not None:
+            binding["repair_context"] = repair_context
         frozen(folder / "REQUEST.json", binding)
         messages = [dict(role="system", content=system), dict(role="user", content=json.dumps(packet))]
+        if repair_context is not None:
+            messages.append(dict(role="user", content=json.dumps(dict(repair_context=repair_context))))
         last_error = None
         for correction in range(2):
             response_path = folder / f"RESPONSE_{correction:02d}.json"
@@ -81,9 +124,14 @@ def audit_screen(result, candidates):
     identifiers = [decision["candidate_identifier"] for decision in result["decisions"]]
     if len(identifiers) != len(set(identifiers)) or set(identifiers) != set(expected):
         raise ValueError("Screen decisions must cover every supplied candidate exactly once")
+    errors = []
     for decision in result["decisions"]:
         if decision["evidence_ids"] != [expected[decision["candidate_identifier"]]["evidence_id"]]:
-            raise ValueError("Screen evidence must cite the candidate's exact source evidence")
+            errors.append(dict(candidate_identifier=decision["candidate_identifier"],
+                               required_evidence_ids=[expected[decision["candidate_identifier"]]["evidence_id"]],
+                               received_evidence_ids=decision["evidence_ids"]))
+    if errors:
+        raise ValueError("Copy the exact source evidence for each mismatched candidate: " + json.dumps(errors))
 
 
 def audit_fusions(result, parents, regions, config):
