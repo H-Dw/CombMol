@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "combmol"
 version = "0.1.0"
 description = "Evidence-bound interaction-fragment combination with native FLOWR inpainting"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = ["numpy>=1.26", "scipy>=1.11", "rdkit>=2024.3", "jsonschema>=4", "requests>=2.31"]
 
 [project.scripts]

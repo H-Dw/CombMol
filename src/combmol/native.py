@@ -71,6 +71,7 @@ class NativeRuntime:
         try:
             sys.argv = ["CombMol", "--pdb_file", str(protein), "--ligand_file", str(reference_ligand),
                         "--ckpt_path", config["checkpoint"], "--save_dir", str(output),
+                        "--arch", "pocket", "--pocket_type", "holo",
                         "--batch_cost", str(config["batch_size"]), "--num_workers", "0",
                         "--cut_pocket", "--pocket_cutoff", str(config["pocket_cutoff_A"]),
                         "--fragment_growing", "--grow_size", "4", "--no_ligand_valence_repair"]
