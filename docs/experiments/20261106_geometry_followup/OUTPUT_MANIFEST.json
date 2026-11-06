@@ -1,0 +1,18 @@
+{
+  "scientific_revision": "fa1d2a258ba38aeb9466545c1b5de217b8d1e27b",
+  "source_evidence_archive_sha256": "07b3d87d6e1e5add45c2f732e69c255f72131e6c1b3f83d544814febabe380b8",
+  "excludes_self": true,
+  "files": {
+    "pseudocode.md": "442ba996319100338804a30d5b45459143db045f5e8099f5fb0e00067d45f499",
+    "references.json": "e4389e515b03392b1a291e9e5b2d1f44494e7eabc18e640f7d68e78864d57fe2",
+    "region_diagnostics.pdf": "54dc2279463845665409413255c217a82a09ce8b6fbded5175521e490401343e",
+    "region_diagnostics.png": "ec9b26f1ee866dc923f1d7ff49473ec8726a4ec2d021b781ea546fab5528c6db",
+    "region_diagnostics.svg": "06b38fb11feaa2efd4760dfeb7e51684ba5f43ce8816b6b2398400c20324f6e4",
+    "region_geometry.csv": "fabbc3aaa09d8c7ce7f8146dc289f334275c7dbe9ba8269d00c63b3688227ed4",
+    "report.zh-CN.md": "581f7a736961521c2a8869d09cccc3547717874b8808db018cdd8def83f30144",
+    "selection_details.json": "af6aae0702861cc20f0a3bd4ae062c0b160dcf2592a29ef7abefed041aa2505b",
+    "StatePacket.json": "fa28043ef421edd40c31924e378b4b9538d54e49fbbbe7dad6f412a426243916",
+    "terminal_geometry.csv": "c66bd980f5ea1a1537279fa62dd71cdcf8a472b3c0f55df4e639381222e503b0",
+    "workflow_proposal.md": "da54ffb5fa5bea312e34b1aed9fb8e9754a3b9d9c2df70243e2b6ba376e1dd4e"
+  }
+}

@@ -43,3 +43,5 @@ Results include source indices, parent scores, PLIP and PoseBusters receipts, co
 ## Completed campaign
 
 The [20261106 audited report](docs/experiments/20261106_final/report.zh-CN.md) covers 675 attempts from 27 fusion conditions, the full candidate and parent tables, PoseBusters diagnostics, original top-hit structures and a small provenance-bound evidence archive. The scientific source commit is `fa1d2a258ba38aeb9466545c1b5de217b8d1e27b`; subsequent report commits do not change that frozen run. Generation and CPU diagnostics are complete. The analysis distinguishes the protocol's fusion eligibility from an all-checks PoseBusters pass and from measured biological activity.
+
+A [region-selection follow-up](docs/experiments/20261106_geometry_followup/report.zh-CN.md) measures attachment geometry, discarded pharmacophore context, shared-fit pose diagnostics and typed interaction recovery. Its source-bound StatePacket and proposal for a later workflow are retrospective analysis; the frozen generator, skills and scientific results remain unchanged.

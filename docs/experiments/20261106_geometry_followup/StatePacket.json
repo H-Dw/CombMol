@@ -1,0 +1,343 @@
+{
+  "schema": "combmol-region-analysis-state-v1",
+  "parent_packet_id": "evidence:07b3d87d6e1e5add45c2f732e69c255f72131e6c1b3f83d544814febabe380b8",
+  "provenance": {
+    "scientific_revision": "fa1d2a258ba38aeb9466545c1b5de217b8d1e27b",
+    "coordinate_frame": "unchanged archived protein frame, Angstrom",
+    "representation": "decoded final molecule and static source conditions",
+    "rdkit_version": "2026.09.1",
+    "analysis_code_sha256": "c466b2321b9086577e1b65019309c67f186057c22ebba6ef5443233b26b71ccd",
+    "correspondence": "original source_atom to fixed slot; no terminal rematching"
+  },
+  "observations": {
+    "6pyy_H7S_A_402": {
+      "conditions": 11,
+      "built": 241,
+      "chemistry_retained": 229,
+      "min_region_distance_range_A": [
+        2.689251436738488,
+        4.200384593105731
+      ],
+      "min_vdw_ratio_range": [
+        0.8132249153683002,
+        1.2354072332663917
+      ],
+      "port_distance_range_A": [
+        2.7649647122522207,
+        4.200384593105731
+      ],
+      "no_pair_both_forward": 0,
+      "unique_selected_topologies": 3,
+      "median_selected_fingerprint_overlap": 0.0,
+      "median_parent_feature_coverage": 0.4727272727272727,
+      "frame_fail_retained_count": 152,
+      "frame_fail_but_joint_fit_below_0_5": 151,
+      "frame_fail_but_both_sides_after_joint_fit_below_0_5": 105,
+      "median_joint_fit_rmsd_A": 0.270638183069304,
+      "median_parent_fit_rmsd_A": 0.16841103472127475,
+      "median_cross_distance_error_A": 0.37756732014067074,
+      "off_port_retained_candidates": 144,
+      "no_port_bridge_retained_candidates": 0,
+      "connected_retained_without_port_bridge": 0,
+      "cross_parent_fixed_bond_candidates": 0,
+      "all_selected_feature_recovery_retained_count": 21,
+      "all_selected_atom_contact_recovery_retained_count": 1,
+      "qualified_all_selected_features_count": 2,
+      "qualified_with_selected_hbonds": 75,
+      "qualified_all_selected_hbonds_recovered": 74,
+      "interaction_type_recovery": {
+        "chemistry_retained": {
+          "hbond": {
+            "expected": 496,
+            "recovered": 493,
+            "fraction": 0.9939516129032258
+          },
+          "saltbridge": {
+            "expected": 229,
+            "recovered": 229,
+            "fraction": 1.0
+          },
+          "pistacking": {
+            "expected": 458,
+            "recovered": 458,
+            "fraction": 1.0
+          },
+          "hydrophobic": {
+            "expected": 558,
+            "recovered": 452,
+            "fraction": 0.8100358422939068
+          },
+          "halogen": {
+            "expected": 129,
+            "recovered": 2,
+            "fraction": 0.015503875968992248
+          }
+        },
+        "original_qualified": {
+          "hbond": {
+            "expected": 152,
+            "recovered": 151,
+            "fraction": 0.993421052631579
+          },
+          "saltbridge": {
+            "expected": 75,
+            "recovered": 75,
+            "fraction": 1.0
+          },
+          "pistacking": {
+            "expected": 150,
+            "recovered": 150,
+            "fraction": 1.0
+          },
+          "hydrophobic": {
+            "expected": 186,
+            "recovered": 146,
+            "fraction": 0.7849462365591398
+          },
+          "halogen": {
+            "expected": 39,
+            "recovered": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "omitted_shared_features": [
+        [
+          "hbond",
+          "A",
+          "152",
+          "GLY",
+          "ligand_acceptor"
+        ],
+        [
+          "hydrophobic",
+          "A",
+          "147",
+          "LEU",
+          "hydrophobe"
+        ]
+      ],
+      "gly152_diagnostic": {
+        "True": {
+          "count": 46,
+          "mean_pic50": 4.188121189241824
+        },
+        "False": {
+          "count": 195,
+          "mean_pic50": 3.7415949564713697
+        }
+      },
+      "strata": {
+        "all_built": {
+          "count": 241,
+          "mean_pic50": 3.8268240299462284,
+          "mean_paired_parent_delta": -0.4465891840052308
+        },
+        "chemistry_retained": {
+          "count": 229,
+          "mean_pic50": 3.808834431993909,
+          "mean_paired_parent_delta": -0.46483869427676805
+        },
+        "joint_fit_below_0_5": {
+          "count": 228,
+          "mean_pic50": 3.807889689478958,
+          "mean_paired_parent_delta": -0.4656765994272734
+        },
+        "all_selected_features": {
+          "count": 21,
+          "mean_pic50": 3.9988488469805037,
+          "mean_paired_parent_delta": -0.3114496526264009
+        },
+        "original_qualified": {
+          "count": 75,
+          "mean_pic50": 3.720074736277262,
+          "mean_paired_parent_delta": -0.5161033662160238
+        },
+        "original_qualified_PB_pass": {
+          "count": 68,
+          "mean_pic50": 3.7117229665026947,
+          "mean_paired_parent_delta": -0.5274794767884647
+        }
+      },
+      "descriptive_spearman": {
+        "min_inter_region_distance_A": {
+          "qualified_rate": 0.2791827801230195,
+          "mean_pic50_delta": -0.21818181818181823
+        },
+        "nearest_port_distance_A": {
+          "qualified_rate": 0.2791827801230195,
+          "mean_pic50_delta": -0.21818181818181823
+        },
+        "best_pair_min_cosine": {
+          "qualified_rate": -0.3295272158829083,
+          "mean_pic50_delta": -0.6727272727272727
+        },
+        "selected_fingerprint_overlap": {
+          "qualified_rate": null,
+          "mean_pic50_delta": null
+        },
+        "mean_free_atoms": {
+          "qualified_rate": 0.11131573579846799,
+          "mean_pic50_delta": -0.35176323534072423
+        }
+      }
+    },
+    "3w54_RNB_A_504": {
+      "conditions": 16,
+      "built": 252,
+      "chemistry_retained": 121,
+      "min_region_distance_range_A": [
+        3.20283487242162,
+        4.4814934419231305
+      ],
+      "min_vdw_ratio_range": [
+        0.9420102565945941,
+        1.3180863064479795
+      ],
+      "port_distance_range_A": [
+        3.20283487242162,
+        4.4814934419231305
+      ],
+      "no_pair_both_forward": 0,
+      "unique_selected_topologies": 12,
+      "median_selected_fingerprint_overlap": 0.0,
+      "median_parent_feature_coverage": 0.5625,
+      "frame_fail_retained_count": 100,
+      "frame_fail_but_joint_fit_below_0_5": 52,
+      "frame_fail_but_both_sides_after_joint_fit_below_0_5": 37,
+      "median_joint_fit_rmsd_A": 0.46063228675922396,
+      "median_parent_fit_rmsd_A": 0.44990382366652376,
+      "median_cross_distance_error_A": 0.42982752542329916,
+      "off_port_retained_candidates": 48,
+      "no_port_bridge_retained_candidates": 8,
+      "connected_retained_without_port_bridge": 4,
+      "cross_parent_fixed_bond_candidates": 0,
+      "all_selected_feature_recovery_retained_count": 12,
+      "all_selected_atom_contact_recovery_retained_count": 1,
+      "qualified_all_selected_features_count": 0,
+      "qualified_with_selected_hbonds": 17,
+      "qualified_all_selected_hbonds_recovered": 8,
+      "interaction_type_recovery": {
+        "chemistry_retained": {
+          "hydrophobic": {
+            "expected": 821,
+            "recovered": 668,
+            "fraction": 0.8136419001218027
+          },
+          "hbond": {
+            "expected": 244,
+            "recovered": 217,
+            "fraction": 0.889344262295082
+          }
+        },
+        "original_qualified": {
+          "hydrophobic": {
+            "expected": 116,
+            "recovered": 96,
+            "fraction": 0.8275862068965517
+          },
+          "hbond": {
+            "expected": 38,
+            "recovered": 29,
+            "fraction": 0.7631578947368421
+          }
+        }
+      },
+      "omitted_shared_features": [
+        [
+          "hydrophobic",
+          "A",
+          "92",
+          "VAL",
+          "hydrophobe"
+        ]
+      ],
+      "gly152_diagnostic": {
+        "True": {
+          "count": 0,
+          "mean_pic50": null
+        },
+        "False": {
+          "count": 252,
+          "mean_pic50": 6.739798939417279
+        }
+      },
+      "strata": {
+        "all_built": {
+          "count": 252,
+          "mean_pic50": 6.739798939417279,
+          "mean_paired_parent_delta": -0.454194360309177
+        },
+        "chemistry_retained": {
+          "count": 121,
+          "mean_pic50": 6.835966941738917,
+          "mean_paired_parent_delta": -0.3415071964263916
+        },
+        "joint_fit_below_0_5": {
+          "count": 73,
+          "mean_pic50": 6.858376770803373,
+          "mean_paired_parent_delta": -0.3048468779211175
+        },
+        "all_selected_features": {
+          "count": 12,
+          "mean_pic50": 7.1125004688898725,
+          "mean_paired_parent_delta": -0.04877171913782755
+        },
+        "original_qualified": {
+          "count": 17,
+          "mean_pic50": 6.89958387262681,
+          "mean_paired_parent_delta": -0.28128940918866324
+        },
+        "original_qualified_PB_pass": {
+          "count": 1,
+          "mean_pic50": 6.344646453857422,
+          "mean_paired_parent_delta": -0.9654929637908936
+        }
+      },
+      "descriptive_spearman": {
+        "min_inter_region_distance_A": {
+          "qualified_rate": 0.21123277202958088,
+          "mean_pic50_delta": -0.02058823529411765
+        },
+        "nearest_port_distance_A": {
+          "qualified_rate": 0.21123277202958088,
+          "mean_pic50_delta": -0.02058823529411765
+        },
+        "best_pair_min_cosine": {
+          "qualified_rate": -0.593076629159977,
+          "mean_pic50_delta": -0.09999999999999999
+        },
+        "selected_fingerprint_overlap": {
+          "qualified_rate": -0.4787669310269647,
+          "mean_pic50_delta": 0.34819439316110196
+        },
+        "mean_free_atoms": {
+          "qualified_rate": 0.06445860311683209,
+          "mean_pic50_delta": -0.4861527926641233
+        }
+      }
+    }
+  },
+  "coverage_limits": [
+    "No intermediate states are available in the compact evidence export.",
+    "Exit directions follow removed source bonds and are descriptive, not a calibrated linker-feasibility test.",
+    "No new affinity predictions, generation, relaxation or binding measurements were performed.",
+    "Protein/ligand protonation was not independently validated; PLIP contacts are model-based evidence.",
+    "Proper Kabsch fits here diagnose relative shape and do not replace the frozen protein-frame objective.",
+    "Atom-exact contact matching may undercount chemically equivalent atom or contact-site alternatives.",
+    "Off-port edges describe added chemistry outside source cut sites; the frozen protocol did not forbid them.",
+    "The checkpoint's conditional-training tasks are not contained in the compact export and were not verified.",
+    "GLY152 was inspected after observing the 6pyy selections; its score association is exploratory, not causal."
+  ],
+  "tables": [
+    "region_geometry.csv",
+    "terminal_geometry.csv",
+    "selection_details.json"
+  ],
+  "table_sha256": {
+    "region_geometry.csv": "fabbc3aaa09d8c7ce7f8146dc289f334275c7dbe9ba8269d00c63b3688227ed4",
+    "terminal_geometry.csv": "c66bd980f5ea1a1537279fa62dd71cdcf8a472b3c0f55df4e639381222e503b0",
+    "selection_details.json": "af6aae0702861cc20f0a3bd4ae062c0b160dcf2592a29ef7abefed041aa2505b"
+  },
+  "packet_id": "state:3e4997a6eda489a66675d72bcb5867f286a25ecff089aa07c6b8b88b69dc4c3c"
+}

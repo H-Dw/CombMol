@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Deep Generative Models for 3D Linker Design",
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jcim.9b01120",
+    "use": "Distance and relative exit-vector orientation inform fragment linking."
+  },
+  {
+    "title": "Equivariant 3D-conditional diffusion model for molecular linker design",
+    "url": "https://www.nature.com/articles/s42256-024-00815-9",
+    "use": "Linker design conditions on three-dimensional fragments and protein pockets."
+  },
+  {
+    "title": "FLOWR: Flow Matching for Structure-Aware De Novo, Interaction- and Fragment-Based Ligand Generation",
+    "url": "https://arxiv.org/html/2504.10564v2",
+    "use": "Multi-purpose conditional training and fixed interacting ligand atoms."
+  },
+  {
+    "title": "PLIP: fully automated protein-ligand interaction profiler",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4489249/",
+    "use": "Rule-based chemical and geometric interaction typing, not interaction energy."
+  },
+  {
+    "title": "F-Halogen Bond: Conditions for Its Existence",
+    "url": "https://pubs.acs.org/doi/10.1021/acs.jpca.0c06803",
+    "use": "Fluorine halogen-bond donation depends on the electronic environment."
+  }
+]
